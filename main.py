@@ -50,3 +50,5 @@ f.write(dfAsString)
 f.close()
 
 df_objectCode = objectCode.getObjectCode(df)
+
+print(df_objectCode)
