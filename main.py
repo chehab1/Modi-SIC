@@ -31,5 +31,4 @@ df = pd.DataFrame(data)
 pd.set_option('display.max_rows', 100)
 
 df = locationCounter.insert_LC(df)
-df.set_index('Location_counter' , inplace=True)
 print(df)
