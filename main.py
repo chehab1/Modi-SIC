@@ -1,5 +1,6 @@
 import pandas as pd
-import numpy as np
+import locationCounter
+import symbolTable
 
 labels = []
 insts = []
@@ -26,9 +27,23 @@ for line in f.readlines():
             values.append(t)
 
 df = pd.DataFrame(data)
-pd.set_option('display.max_rows', 100)
 
-# Create intermediate file
-with open('E:\\Term 7\\Systems programming\\Modi-SIC\\generated files\\intermediate_file.txt', 'a') as f:
-    dfAsString = df.to_string(header=False, index=False)
-    f.write(dfAsString)
+# to get intermediate file
+f = open('generated files\\intermediate_file.txt', 'w')
+dfAsString = df.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
+
+# to get location counter
+df = locationCounter.insert_LC(df)
+f = open('generated files\\location_counter.txt', 'w')
+dfAsString = df.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
+
+# to get symbol_table
+df_symbolTable = symbolTable.getSybmolTable(df)
+f = open('generated files\\symbol_table.txt', 'w')
+dfAsString = df_symbolTable.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
