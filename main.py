@@ -1,8 +1,5 @@
 import pandas as pd
 
-import locationCounter
-
-
 labels = []
 insts = []
 values = []
@@ -30,7 +27,4 @@ for line in f.readlines():
 df = pd.DataFrame(data)
 pd.set_option('display.max_rows', 100)
 
-# print(df)
-# Add location counter
-df = locationCounter.insert_LC(df)
 print(df)
