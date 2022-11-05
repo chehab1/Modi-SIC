@@ -47,12 +47,12 @@ def insert_LC(df):
                 if val[0] == 'C':
                     # get the size of c
                     sc = size_c(val)
-                    nlc = hex(add(int(lc[len(lc) - 1], 16), int(str(sc), 16)))
+                    nlc = hex(add(int(lc[len(lc) - 1], 16), int(sc)))
                     lc.append(nlc[2:])
                 else:
                     # get the size of x
                     sx = int(size_x(val))
-                    nlc = hex(add(int(lc[len(lc) - 1], 16), int(str(sx), 16)))
+                    nlc = hex(add(int(lc[len(lc) - 1], 16), int(sx)))
                     lc.append(nlc[2:])
 
             elif df.loc[i, 'inst'] == 'RESW':

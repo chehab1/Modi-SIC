@@ -15,6 +15,7 @@ f = open('rsc\\inputs\\input_program.txt', 'r')
 
 for line in f.readlines():
     temp = line.split('\t')
+    # print(temp)
     if temp[1] == '.\n' or temp[1] == '.':
         continue
     else:
@@ -30,4 +31,5 @@ df = pd.DataFrame(data)
 pd.set_option('display.max_rows', 100)
 
 df = locationCounter.insert_LC(df)
+df.set_index('Location_counter' , inplace=True)
 print(df)
