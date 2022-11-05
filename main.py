@@ -1,6 +1,7 @@
 import pandas as pd
 import locationCounter
 import symbolTable
+import objectCode
 
 labels = []
 insts = []
@@ -47,3 +48,5 @@ f = open('generated files\\symbol_table.txt', 'w')
 dfAsString = df_symbolTable.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
+
+df_objectCode = objectCode.getObjectCode(df)
