@@ -1,6 +1,7 @@
 import pandas as pd
-
 import locationCounter
+import symbolTable
+import objectCode
 
 labels = []
 insts = []
@@ -15,7 +16,6 @@ f = open('rsc\\inputs\\input_program.txt', 'r')
 
 for line in f.readlines():
     temp = line.split('\t')
-    # print(temp)
     if temp[1] == '.\n' or temp[1] == '.':
         continue
     else:
@@ -28,7 +28,25 @@ for line in f.readlines():
             values.append(t)
 
 df = pd.DataFrame(data)
-pd.set_option('display.max_rows', 100)
 
+# to get intermediate file
+f = open('generated files\\intermediate_file.txt', 'w')
+dfAsString = df.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
+
+# to get location counter
 df = locationCounter.insert_LC(df)
-print(df)
+f = open('generated files\\location_counter.txt', 'w')
+dfAsString = df.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
+
+# to get symbol_table
+df_symbolTable = symbolTable.getSybmolTable(df)
+f = open('generated files\\symbol_table.txt', 'w')
+dfAsString = df_symbolTable.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
+
+df_objectCode = objectCode.getObjectCode(df)
