@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 labels = []
 insts = []
@@ -27,4 +28,7 @@ for line in f.readlines():
 df = pd.DataFrame(data)
 pd.set_option('display.max_rows', 100)
 
-print(df)
+# Create intermediate file
+with open('E:\\Term 7\\Systems programming\\Modi-SIC\\generated files\\intermediate_file.txt', 'a') as f:
+    dfAsString = df.to_string(header=False, index=False)
+    f.write(dfAsString)
