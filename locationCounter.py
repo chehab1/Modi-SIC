@@ -36,7 +36,7 @@ def insert_LC(df):
     for i in range(0, len(df['inst']) - 1):
         try:
             if i == 0:
-                lc.append(df.loc[0, 'value'])
+                lc.append(str(df.loc[0, 'value']))
 
             elif inst.__contains__(df.loc[i, 'inst']) or df.loc[i, 'inst'] == 'WORD':
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int('3', 16)))
@@ -70,5 +70,5 @@ def insert_LC(df):
         except:
             lc.append(' ')
 
-    df.insert(loc=0, column='Location_counter', value=lc)
+    df.insert(loc=0, column='LCounter', value=lc)
     return df
