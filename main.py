@@ -1,6 +1,7 @@
 import pandas as pd
+
 import locationCounter
-import symbolTable
+
 labels = []
 insts = []
 values = []
@@ -30,11 +31,5 @@ df = pd.DataFrame(data)
 pd.set_option('display.max_rows', 100)
 
 df = locationCounter.insert_LC(df)
-df.to_csv('out_pass1.txt', sep='\t', index=False)
-# df.set_index('Location_counter', inplace=True)
-
-# to get symbol_table
-df_symbolTable = symbolTable.getSybmolTable(df)
-# print(df_symbolTable)
-
-df_symbolTable.to_csv('symbTable.txt', sep='\t', index=False)
+df.set_index('Location_counter' , inplace=True)
+print(df)
