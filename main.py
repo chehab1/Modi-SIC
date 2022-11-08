@@ -47,7 +47,6 @@ dfAsString = df_symbolTable.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
 
-
 # OBJECT CODE
 df_objectCode = objectCode.getObjectCode(df)
 f = open('generated files\\out_pass2.txt', 'w')

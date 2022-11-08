@@ -34,3 +34,4 @@ BUFFER  RESB     4096
  INPUT  BYTE    X'F1'
 MAXLEN  WORD     4096
          LDX       #3
+chehab   SIO    WRREC

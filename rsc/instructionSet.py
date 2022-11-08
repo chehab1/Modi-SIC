@@ -25,10 +25,11 @@ Mnemonic = {
     'TD': hex(224),
     'TIX': hex(44),
     'WD': hex(220),
-    'FIX': hex(196),
-    'FLOAT': hex(192),
-    'HIO': hex(244),
-    'NORM': hex(200),
-    'SIO': hex(240),
-    'TIO': hex(248)
+    # Format 1 Instructions
+    'FIX': [1, hex(196)],
+    'FLOAT': [1, hex(192)],
+    'HIO': [1, hex(244)],
+    'NORM': [1, hex(200)],
+    'SIO': [1, hex(240)],
+    'TIO': [1, hex(248)]
 }

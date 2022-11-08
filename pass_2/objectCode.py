@@ -1,9 +1,11 @@
 import rsc.instructionSet as inst
 from pass_2 import immediate, indexing
 import ErrorHandling.labelNotFound as notFound
+
 objectCodeList = []
 
 
+# convert symbol table to a dictionary
 def df_to_dict(df):
     temp = {}
     for i in range(len(df)):
@@ -14,15 +16,17 @@ def df_to_dict(df):
 
 def getObjectCode(df):
     empty_dict = df_to_dict(df)
-
     for i in range(len(df)):
         temp = df.loc[i, 'inst']
         value = df.loc[i, 'value']
         #  FULL INSTRUCTION SET OF modi-SIC
         if inst.Mnemonic.__contains__(temp):
+            # check if it is format 1
+            if isinstance(inst.Mnemonic[temp], list):
+                objectCodeList.append(inst.Mnemonic[temp][1][2:] + '0000')
             # check for values end with ,X
-            if len(value) > 1 and value[len(value) - 2:] == ',X':
-                if not empty_dict.__contains__(value[0:len(value)-2]):
+            elif len(value) > 1 and value[len(value) - 2:] == ',X':
+                if not empty_dict.__contains__(value[0:len(value) - 2]):
                     raise notFound.LabelNotFound('Value ' + value + ' Not Found in Labels in the instruction ' + temp)
                 objectCodeList.append(indexing.handleIndexing(df, temp, value))
             # if it immediate value
@@ -67,7 +71,7 @@ def getObjectCode(df):
     for i in range(len(df)):
         temp = df.loc[i, 'value']
         if empty_dict.__contains__(temp):
-            if temp[0] == '#':
+            if temp[0] == '#' or len(objectCodeList[i]) == 6:
                 continue
             else:
                 objectCodeList[i] += empty_dict[temp]
