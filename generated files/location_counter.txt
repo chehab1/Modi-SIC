@@ -25,7 +25,7 @@
 2042          JEQ    RLOOP
 2045           RD    INPUT
 2048         COMP     ZERO
-204b          JEQ     EXIT
+204b  WRREC   JEQ     EXIT
 204e         STCH BUFFER,X
 2051          TIX   MAXLEN
 2054          JLT    RLOOP
@@ -33,3 +33,4 @@
 205a         RSUB         
 205d  INPUT  BYTE    X'F1'
 205e MAXLEN  WORD     4096
+2061          LDX       #3
