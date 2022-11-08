@@ -25,7 +25,7 @@ BUFFER  RESB     4096
          JEQ    RLOOP
           RD    INPUT
         COMP     ZERO
-         JEQ     EXIT
+ WRREC   JEQ     EXIT
         STCH BUFFER,X
          TIX   MAXLEN
          JLT    RLOOP
@@ -33,3 +33,4 @@ BUFFER  RESB     4096
         RSUB         
  INPUT  BYTE    X'F1'
 MAXLEN  WORD     4096
+         LDX       #3

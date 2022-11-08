@@ -1,5 +1,6 @@
 import rsc.instructionSet as inst_set
 from operator import *
+import ErrorHandling.byteValues as InvalidByte
 
 
 def size_c(val):
@@ -49,12 +50,14 @@ def insert_LC(df):
                     sc = size_c(val)
                     nlc = hex(add(int(lc[len(lc) - 1], 16), int(sc)))
                     lc.append(nlc[2:])
-                else:
+                elif val[0] == 'X':
                     # get the size of x
                     sx = int(size_x(val))
                     nlc = hex(add(int(lc[len(lc) - 1], 16), int(sx)))
                     lc.append(nlc[2:])
-
+                else:
+                    raise InvalidByte.invalidByteValue\
+                        (str(i + 1), "Invalid Byte Value in Intermediate_File line -> ")
             elif df.loc[i, 'inst'] == 'RESW':
                 val = df.loc[i, 'value']
                 sw = str(size_w(val))
@@ -65,10 +68,9 @@ def insert_LC(df):
                 val = df.loc[i, 'value']
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int(val)))
                 lc.append(nlc[2:])
-            else:
-                lc.append(' ')
-        except:
-            lc.append(' ')
+
+        except InvalidByte.invalidByteValue as e:
+            raise e
 
     df.insert(loc=0, column='LCounter', value=lc)
     return df

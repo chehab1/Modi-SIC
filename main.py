@@ -1,7 +1,6 @@
 import pandas as pd
-import locationCounter
-import symbolTable
-import objectCode
+from pass_1 import locationCounter, symbolTable
+from pass_2 import objectCode
 
 labels = []
 insts = []
@@ -41,7 +40,6 @@ f = open('generated files\\location_counter.txt', 'w')
 dfAsString = df.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
-
 # to get symbol_table
 df_symbolTable = symbolTable.getSybmolTable(df)
 f = open('generated files\\symbol_table.txt', 'w')
@@ -49,4 +47,12 @@ dfAsString = df_symbolTable.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
 
+
+# OBJECT CODE
 df_objectCode = objectCode.getObjectCode(df)
+f = open('generated files\\out_pass2.txt', 'w')
+dfAsString = df_objectCode.to_string(header=False, index=False)
+f.write(dfAsString)
+f.close()
+
+print(df_objectCode)
