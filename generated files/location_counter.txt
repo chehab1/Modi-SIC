@@ -35,3 +35,4 @@
 205e MAXLEN  WORD     4096
 2061          LDX       #3
 2064 chehab   SIO    WRREC
+2067          END     1000
