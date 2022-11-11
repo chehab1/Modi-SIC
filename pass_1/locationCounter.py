@@ -34,7 +34,7 @@ def insert_LC(df):
     lc = ['0']
     inst = inst_set.Mnemonic
 
-    for i in range(0, len(df['inst']) - 1):
+    for i in range(0, len(df['inst'])):
         try:
             if i == 0:
                 lc.append(str(df.loc[0, 'value']))
@@ -68,6 +68,12 @@ def insert_LC(df):
                 val = df.loc[i, 'value']
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int(val)))
                 lc.append(nlc[2:])
+            # if there is no end then it will be added it
+            if i == len(df['inst']) -1 and df.loc[i, 'inst'] != 'END':
+                df.loc[i+1, 'inst'] = 'END'
+                df.loc[i+1, 'value'] = df.loc[0, 'value']
+                df.loc[i+1, 'label'] = ''
+
 
         except InvalidByte.invalidByteValue as e:
             raise e

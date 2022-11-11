@@ -34,3 +34,4 @@
 205d  INPUT  BYTE    X'F1'
 205e MAXLEN  WORD     4096
 2061          LDX       #3
+2064          END     1000

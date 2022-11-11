@@ -1,7 +1,7 @@
 import pandas as pd
 from pass_1 import locationCounter, symbolTable
 from pass_2 import objectCode
-
+import pass_2.HTE as HTE
 labels = []
 insts = []
 values = []
@@ -55,4 +55,13 @@ dfAsString = df_objectCode.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
 
-print(df_objectCode)
+
+# HTE Record
+HTE_2D = HTE.getHTE(df)
+f = open('generated files\\HTE.txt', 'w')
+# dfAsString = HTE_2D.to_string(header=False, index=False)
+f.write(HTE_2D)
+f.close()
+
+print(df)
+# print(HTE_2D)
