@@ -34,4 +34,4 @@
 205d  INPUT  BYTE    X'F1'     F1
 205e MAXLEN  WORD     4096 001000
 2061          LDX       #3 050003
-2064          END     1000       
+2064 chehab   SIO    WRREC f00000
