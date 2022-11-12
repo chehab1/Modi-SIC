@@ -11,11 +11,11 @@ data = {
     'inst': insts,
     'value': values
 }
-f = open('rsc\\inputs\\input_program.txt', 'r')
+f = open('rsc/inputs/inputs/in5.txt', 'r')
 
 for line in f.readlines():
     temp = line.split('\t')
-    if temp[1] == '.\n' or temp[1] == '.':
+    if len(temp) < 4 or temp[1] == '.\n' or temp[1] == '.':
         continue
     else:
         labels.append(temp[1])
@@ -33,7 +33,7 @@ f = open('generated files\\intermediate_file.txt', 'w')
 dfAsString = df.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
-
+# print(df)
 # to get location counter
 df = locationCounter.insert_LC(df)
 f = open('generated files\\location_counter.txt', 'w')

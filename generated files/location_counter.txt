@@ -1,38 +1,23 @@
-   0   COPY START     1000
-1000  FIRST   STL   RETADR
-1003  CLOOP  JSUB    RDREC
-1006          LDA   LENGTH
-1009         COMP     ZERO
-100c          JEQ   ENDFIL
-100f         JSUB    WRREC
-1012            J    CLOOP
-1015 ENDFIL   LDA      EOF
-1018          STA   BUFFER
-101b          LDA    THREE
-101e          STA   LENGTH
-1021         JSUB    WRREC
-1024          LDL   RETADR
-1027         RSUB         
-102a    EOF  BYTE   C'EOF'
-102d  THREE  WORD        3
-1030   ZERO  WORD        0
-1033 RETADR  RESW        1
-1036 LENGTH  RESW        1
-1039 BUFFER  RESB     4096
-2039  RDREC   LDX     ZERO
-203c          LDA     ZERO
-203f  RLOOP    TD    INPUT
-2042          JEQ    RLOOP
-2045           RD    INPUT
-2048         COMP     ZERO
-204b  WRREC   JEQ     EXIT
-204e         STCH BUFFER,X
-2051          TIX   MAXLEN
-2054          JLT    RLOOP
-2057   EXIT   STX   LENGTH
-205a         RSUB         
-205d  INPUT  BYTE    X'F1'
-205e MAXLEN  WORD     4096
-2061          LDX       #3
-2064 chehab   SIO    WRREC
-2067          END     1000
+   0  PROG1 START    0000
+0000          LDA    ZERO
+0003          STA   INDEX
+0006   LOOP   LDX   INDEX
+0009          LDA    ZERO
+000c          STA ALPHA,X
+000f          LDA   INDEX
+0012          ADD   THREE
+0015          STA   INDEX
+0018         COMP    K300
+001b          TIX  TWENTY
+001e          JLT    LOOP
+0021        FLOAT        
+0022   test FLOAT        
+0023          LDA      #8
+0026   kekw   LDA    #100
+0029  INDEX  RESW       1
+002c  ALPHA  RESW     100
+0158   ZERO  WORD       0
+015b   K300  WORD     100
+015e  THREE  WORD       3
+0161 TWENTY  WORD      20
+0164          END    0000

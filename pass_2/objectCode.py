@@ -19,11 +19,12 @@ def getObjectCode(df):
     for i in range(len(df)):
         temp = df.loc[i, 'inst']
         value = df.loc[i, 'value']
+
         #  FULL INSTRUCTION SET OF modi-SIC
         if inst.Mnemonic.__contains__(temp):
             # check if it is format 1
             if isinstance(inst.Mnemonic[temp], list):
-                objectCodeList.append(inst.Mnemonic[temp][1][2:] + '0000')
+                objectCodeList.append(inst.Mnemonic[temp][1][2:])
             # check for values end with ,X
             elif len(value) > 1 and value[len(value) - 2:] == ',X':
                 if not empty_dict.__contains__(value[0:len(value) - 2]):
@@ -65,6 +66,8 @@ def getObjectCode(df):
                 txt = val[2:len(val) - 1]
                 ob_code = txt.encode('utf-8').hex().upper()
                 objectCodeList.append(ob_code)
+        elif temp == 'END':
+            objectCodeList.append('      ')
         else:
             objectCodeList.append(' ')
 

@@ -21,9 +21,9 @@ def df_to_dict(df):
 def getTheHeader(df):
     header = 'H.'
     header += fill(df.loc[0, 'label']) + '.'
-    header += df.loc[0, 'LCounter'].zfill(6) + '.'
+    header += df.loc[1, 'LCounter'].zfill(6) + '.'
     # get the length of program
-    str = int(df.loc[0, 'LCounter'], 16)
+    str = int(df.loc[1, 'LCounter'], 16)
     end = int(df.loc[len(df) - 1, 'LCounter'], 16)
     length = hex(end - str)[2:].zfill(6)
     header += length
@@ -52,9 +52,14 @@ def getHTE(df):
             c = 0
             temp = 'T'
         elif inst == 'RESW' or inst == 'RESB':
-            string = df.loc[f, 'LCounter'].zfill(6)
+            if f == 0:
+                string = df.loc[f + 1, 'LCounter'].zfill(6)
+                str = int(df.loc[f+1, 'LCounter'], 16)
+            else:
+                string = df.loc[f, 'LCounter'].zfill(6)
+                str = int(df.loc[f, 'LCounter'], 16)
             temp = temp[:2] + string + temp[1:]
-            str = int(df.loc[f, 'LCounter'], 16)
+
             end = int(df.loc[l, 'LCounter'], 16)
             length = hex(end - str)[2:].zfill(2)
             temp = temp[:8] + '.' + length + '.' + temp[9:]
@@ -64,9 +69,15 @@ def getHTE(df):
             c = 0
             temp = 'T'
         elif c == 10:
-            string = df.loc[f, 'LCounter'].zfill(6)
+            # check if the pointer is in START program or not
+            if f == 0:
+                string = df.loc[f +1, 'LCounter'].zfill(6)
+                str = int(df.loc[f +1, 'LCounter'], 16)
+            else:
+                str = int(df.loc[f, 'LCounter'], 16)
+                string = df.loc[f, 'LCounter'].zfill(6)
             temp = temp[:2] + string + temp[1:]
-            str = int(df.loc[f, 'LCounter'], 16)
+
             end = int(df.loc[l, 'LCounter'], 16)
             length = hex(end - str)
             if len(length) > 4:
@@ -80,7 +91,7 @@ def getHTE(df):
             c = 0
             temp = 'T'
         else:
-            temp += '.' + df.loc[l, 'objCode'].zfill(6)
+            temp += '.' + df.loc[l, 'objCode']
             # print(temp)
             c += 1
             l += 1
@@ -88,7 +99,7 @@ def getHTE(df):
     text = [i for i in text if len(i) > 11]
     End = 'E' + '.' + df.loc[1, 'LCounter'].zfill(6)
 
-    #change it to string
+    # change it to string
     textRecord = ''
     for i in text:
         textRecord += i + '\n'
