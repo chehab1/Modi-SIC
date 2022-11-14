@@ -10,14 +10,10 @@
 0018         COMP    K300
 001b          TIX  TWENTY
 001e          JLT    LOOP
-0021        FLOAT        
-0022   test FLOAT        
-0023          LDA      #8
-0026   kekw   LDA    #100
-0029  INDEX  RESW       1
-002c  ALPHA  RESW     100
-0158   ZERO  WORD       0
-015b   K300  WORD     100
-015e  THREE  WORD       3
-0161 TWENTY  WORD      20
-0164          END    0000
+0021  INDEX  RESW       1
+0024  ALPHA  RESW     100
+0150   ZERO  WORD       0
+0153   K300  WORD     100
+0156  THREE  WORD       3
+0159 TWENTY  WORD      20
+015c          END    0000

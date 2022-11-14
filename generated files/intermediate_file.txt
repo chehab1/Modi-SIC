@@ -10,10 +10,6 @@
         COMP    K300
          TIX  TWENTY
          JLT    LOOP
-       FLOAT        
-  test FLOAT        
-         LDA      #8
-  kekw   LDA    #100
  INDEX  RESW       1
  ALPHA  RESW     100
   ZERO  WORD       0

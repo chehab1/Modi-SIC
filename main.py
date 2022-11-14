@@ -11,7 +11,7 @@ data = {
     'inst': insts,
     'value': values
 }
-f = open('rsc/inputs/inputs/in5.txt', 'r')
+f = open('rsc/inputs/inputs/in4.txt', 'r')
 
 for line in f.readlines():
     temp = line.split('\t')
