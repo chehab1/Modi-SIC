@@ -1,19 +1,23 @@
    0  PROG1 START    0000       
-0000          LDA    ZERO 000150
-0003          STA   INDEX 0c0021
-0006   LOOP   LDX   INDEX 040021
-0009          LDA    ZERO 000150
-000c          STA ALPHA,X 0c8024
-000f          LDA   INDEX 000021
-0012          ADD   THREE 180156
-0015          STA   INDEX 0c0021
-0018         COMP    K300 280153
-001b          TIX  TWENTY 2c0159
+0000          LDA    ZERO 000158
+0003          STA   INDEX 0c0029
+0006   LOOP   LDX   INDEX 040029
+0009          LDA    ZERO 000158
+000c          STA ALPHA,X 0c802c
+000f          LDA   INDEX 000029
+0012          ADD   THREE 18015e
+0015          STA   INDEX 0c0029
+0018         COMP    K300 28015b
+001b          TIX  TWENTY 2c0161
 001e          JLT    LOOP 380006
-0021  INDEX  RESW       1       
-0024  ALPHA  RESW     100       
-0150   ZERO  WORD       0 000000
-0153   K300  WORD     100 000064
-0156  THREE  WORD       3 000003
-0159 TWENTY  WORD      20 000014
-015c          END    0000       
+0021        FLOAT             c0
+0022   test FLOAT             c0
+0023          LDA      #8 010008
+0026   kekw   LDA    #100 010064
+0029  INDEX  RESW       1       
+002c  ALPHA  RESW     100       
+0158   ZERO  WORD       0 000000
+015b   K300  WORD     100 000064
+015e  THREE  WORD       3 000003
+0161 TWENTY  WORD      20 000014
+0164          END    0000       
