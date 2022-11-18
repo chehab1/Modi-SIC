@@ -2,7 +2,9 @@ import rsc.instructionSet as inst
 import math
 
 
-def immediateObjectCode(instruction, value):
+def immediateObjectCode(instruction, value, index):
+    if len(value) == 1:
+        raise Exception('Not Accurate value in intermediate file line -> ' + str(index+1))
     opcode = inst.Mnemonic[instruction][2:]
     # Code to convert hex to binary
     opcode_bin = "{0:08b}".format(int(opcode, 16))

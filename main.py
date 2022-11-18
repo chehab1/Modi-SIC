@@ -11,7 +11,8 @@ data = {
     'inst': insts,
     'value': values
 }
-f = open('rsc/inputs/inputs/in5.txt', 'r')
+f = open('rsc/inputs/input_program.txt', 'r')
+
 
 for line in f.readlines():
     temp = line.split('\t')
@@ -33,13 +34,14 @@ f = open('generated files\\intermediate_file.txt', 'w')
 dfAsString = df.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
-# print(df)
+
 # to get location counter
 df = locationCounter.insert_LC(df)
 f = open('generated files\\location_counter.txt', 'w')
 dfAsString = df.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
+
 # to get symbol_table
 df_symbolTable = symbolTable.getSybmolTable(df)
 f = open('generated files\\symbol_table.txt', 'w')

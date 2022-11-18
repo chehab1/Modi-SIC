@@ -17,7 +17,7 @@ def df_to_dict(df):
 def getObjectCode(df):
     empty_dict = df_to_dict(df)
     for i in range(len(df)):
-        temp = df.loc[i, 'inst']
+        temp = df.loc[i, 'inst'].upper()
         value = df.loc[i, 'value']
 
         #  FULL INSTRUCTION SET OF modi-SIC
@@ -27,15 +27,16 @@ def getObjectCode(df):
                 objectCodeList.append(inst.Mnemonic[temp][1][2:])
             # check for values end with ,X
             elif len(value) > 1 and value[len(value) - 2:] == ',X':
+                # check if this value is already in labels or not
                 if not empty_dict.__contains__(value[0:len(value) - 2]):
-                    raise notFound.LabelNotFound('Value ' + value + ' Not Found in Labels in the instruction ' + temp)
+                    raise notFound.LabelNotFound(value, temp)
                 objectCodeList.append(indexing.handleIndexing(df, temp, value))
             # if it immediate value
             elif len(value) >= 1 and value[0] == '#':
-                objectCodeList.append(immediate.immediateObjectCode(temp, value))
-            # Handling if value not found in label
+                objectCodeList.append(immediate.immediateObjectCode(temp, value, i))
+            # Handling if value not found in labels
             elif not temp == 'RSUB' and not empty_dict.__contains__(value):
-                raise notFound.LabelNotFound('Value ' + value + ' Not Found in Labels in the instruction ' + temp)
+                raise notFound.LabelNotFound(value, temp)
             elif temp == 'RSUB':
                 objectCodeList.append(inst.Mnemonic[temp][2:] + '0000')
             # for LDL, LDX, LDA, STA

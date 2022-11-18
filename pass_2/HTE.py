@@ -37,7 +37,7 @@ def getHTE(df):
     text = []
     temp = 'T'
     while l < len(df):
-        inst = df.loc[l, 'inst']
+        inst = df.loc[l, 'inst'].upper()
         # check if the pointer is in START program or not
         if f == 0:
             string = df.loc[f + 1, 'LCounter'].zfill(6)
