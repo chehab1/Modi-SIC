@@ -11,7 +11,7 @@ data = {
     'inst': insts,
     'value': values
 }
-f = open('rsc/inputs/input_program.txt', 'r')
+f = open('rsc/inputs/in.txt', 'r')
 
 # parsing input file
 for line in f.readlines():
