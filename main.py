@@ -13,7 +13,7 @@ data = {
 }
 f = open('rsc/inputs/input_program.txt', 'r')
 
-
+# parsing input file
 for line in f.readlines():
     temp = line.split('\t')
     if len(temp) < 4 or temp[1] == '.\n' or temp[1] == '.':
@@ -66,4 +66,3 @@ f.write(HTE_2D)
 f.close()
 
 print(df)
-# print(HTE_2D)

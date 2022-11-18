@@ -34,5 +34,5 @@
 205d  INPUT  byte    X'F1'     F1
 205e MAXLEN  word     4096 001000
 2061          ldx       #3 050003
-2064   test   sio    WRREC f0204b
+2064   test   sio              f0
 2065          END     1000       

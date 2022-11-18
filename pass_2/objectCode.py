@@ -21,12 +21,18 @@ def getObjectCode(df):
         value = df.loc[i, 'value']
 
         #  FULL INSTRUCTION SET OF modi-SIC
+        # Get opcode
         if inst.Mnemonic.__contains__(temp):
-            # check if it is format 1
+            # Handling if it's not RSUB & has no value
+            if value == '' and temp != 'RSUB' and not isinstance(inst.Mnemonic[temp], list):
+                raise Exception('No Value in intermediate file in line ' + str(i + 1))
+            # check if it is format 1 & get opcode
             if isinstance(inst.Mnemonic[temp], list):
+                if len(value) > 0:
+                    raise Exception('Format 1 should have no value in line ' + str(i+1))
                 objectCodeList.append(inst.Mnemonic[temp][1][2:])
             # check for values end with ,X
-            elif len(value) > 1 and value[len(value) - 2:] == ',X':
+            elif len(value) > 1 and value[len(value) - 2:].upper() == ',X':
                 # check if this value is already in labels or not
                 if not empty_dict.__contains__(value[0:len(value) - 2]):
                     raise notFound.LabelNotFound(value, temp)
@@ -52,7 +58,7 @@ def getObjectCode(df):
         elif temp == 'WORD':
             dec = int(df.loc[i, 'value'])
             hexSt = format(dec, '02x')
-            hexSt = hexSt.zfill((6 - len(hexSt)) + len(hexSt))
+            hexSt = hexSt.zfill(6)
             objectCodeList.append(hexSt)
 
         elif temp == 'BYTE':
@@ -67,13 +73,12 @@ def getObjectCode(df):
                 txt = val[2:len(val) - 1]
                 ob_code = txt.encode('utf-8').hex().upper()
                 objectCodeList.append(ob_code)
-        elif temp == 'END':
-            objectCodeList.append('      ')
         else:
-            objectCodeList.append(' ')
+            objectCodeList.append('      ')
 
     for i in range(len(df)):
         temp = df.loc[i, 'value']
+
         if empty_dict.__contains__(temp):
             if temp[0] == '#' or len(objectCodeList[i]) == 6:
                 continue

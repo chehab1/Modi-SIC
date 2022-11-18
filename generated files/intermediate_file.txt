@@ -34,4 +34,4 @@ BUFFER  resb     4096
  INPUT  byte    X'F1'
 MAXLEN  word     4096
          ldx       #3
-  test   sio    WRREC
+  test   sio         

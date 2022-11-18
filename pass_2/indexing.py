@@ -13,5 +13,7 @@ def handleIndexing(df, instruction, value):
     address_bin = '1' + address_bin[1:]
     object_code = opcode_bin + address_bin
     object_code = hex(int(object_code, 2))[2:]
+    # for opcodes contains only 1 Hex digit
     object_code = object_code.zfill(6)
     return object_code
+

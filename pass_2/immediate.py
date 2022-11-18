@@ -15,9 +15,9 @@ def immediateObjectCode(instruction, value, index):
     # convert value to hexadecimal
     address = hex(int(address))[2:]
     address_bin = "{0:016b}".format(int(address, 16))
-    # concate the opcode to address
+    # concat the opcode to address
     objectCode = opcode_bin + address_bin
-    # convert the binary to hexa
+    # convert the binary to hex
     objectCode = hex(int(objectCode, 2))[2:]
     objectCode = objectCode.zfill(6)
     return objectCode

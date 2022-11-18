@@ -38,4 +38,4 @@
 190	MAXLEN	word	4096
 195	.
 200		ldx	#3	TESTING IMMEDIATE INSTRUCTIONS
-205	test	sio	WRREC	test format 1
+205	test	sio		test format 1
