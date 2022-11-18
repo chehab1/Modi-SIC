@@ -4,10 +4,11 @@ The Modi-SIC assembler has the same set of instructions (Format 3) and concept o
 
 
 ## Project Idea 
-It reads an assembly programm written in Modi-Sic as input in the form of a text file (in.txt). 
+It reads an assembly program written in Modi-Sic as input in the form of a text file (in.txt). 
 [InputFile](https://github.com/chehab1/Modi-SIC/blob/main/rsc/inputs/in.txt)
 
 It generates five files, and set them in the folder "generated files".
+    
     intermediate.txt (Parsed input without code lines and comments) 
     location_counter.txt
     symbol tabkle.txt
