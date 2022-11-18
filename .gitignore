@@ -1,3 +1,4 @@
 
-# ignore jupter file
+# ignore jupter files
 Jupyter_notebook
+.ipynb_checkpoints
