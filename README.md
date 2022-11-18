@@ -27,3 +27,5 @@ The only thing you need to do when writing your inputs is to use a tab separator
         
         python main.py
         
+## License
+####  MIT License        
