@@ -27,6 +27,7 @@ The only thing you need to do when writing your inputs is to use a tab separator
 4.  run the project by running this command 
         
         python main.py
-        
+>+  OR  you can just run the 'run.bat' file 
+
 ## License
 ####  MIT License        
