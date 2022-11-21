@@ -2,6 +2,7 @@ import pandas as pd
 from pass_1 import locationCounter, symbolTable
 from pass_2 import objectCode
 import pass_2.HTE as HTE
+
 labels = []
 insts = []
 values = []
@@ -11,11 +12,13 @@ data = {
     'inst': insts,
     'value': values
 }
-f = open('rsc/inputs/in.txt', 'r')
+f = open('rsc/inputs/input_for_diss_2.txt', 'r')
 
 # parsing input file
 for line in f.readlines():
     temp = line.split('\t')
+    if len(temp) >= 4 and temp[2].upper() == 'END':
+        break
     if len(temp) < 4 or temp[1] == '.\n' or temp[1] == '.':
         continue
     else:
@@ -49,14 +52,12 @@ dfAsString = df_symbolTable.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
 
-
 # OBJECT CODE
 df_objectCode = objectCode.getObjectCode(df)
 f = open('generated files\\out_pass2.txt', 'w')
 dfAsString = df_objectCode.to_string(header=False, index=False)
 f.write(dfAsString)
 f.close()
-
 
 # HTE Record
 HTE_2D = HTE.getHTE(df)
@@ -66,3 +67,4 @@ f.write(HTE_2D)
 f.close()
 
 print(df)
+

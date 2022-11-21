@@ -3,6 +3,7 @@ from operator import *
 import ErrorHandling.byteValues as InvalidByte
 from ErrorHandling import byteValues, invalidInst as InvalidByte, invalidInst
 
+
 def size_c(val):
     return len(val) - 3
 
@@ -26,7 +27,7 @@ def insert_LC(df):
         instInput = df.loc[i, 'inst'].upper()
         # for start line
         if i == 0:
-            lc.append(str(df.loc[0, 'value']))
+            lc.append(str(df.loc[0, 'value']).upper())
         # instructions and word
         elif inst.__contains__(instInput) or instInput == 'WORD':
             # format_1
@@ -35,7 +36,7 @@ def insert_LC(df):
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int('1', 16)))
             else:
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int('3', 16)))
-            lc.append(nlc[2:].zfill(4))
+            lc.append(nlc[2:].zfill(4).upper())
 
         elif instInput == 'BYTE':
             val = df.loc[i, 'value']
@@ -44,13 +45,13 @@ def insert_LC(df):
                 # get the size of c
                 sc = size_c(val)
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int(sc)))
-                lc.append(nlc[2:].zfill(4))
+                lc.append(nlc[2:].zfill(4).upper())
             # check val of byte X' '
             elif val[0] == 'X' and val[1] == '\'' and val[len(val) - 1] == '\'':
                 # get the size of x
                 sx = int(size_x(val))
                 nlc = hex(add(int(lc[len(lc) - 1], 16), int(sx)))
-                lc.append(nlc[2:].zfill(4))
+                lc.append(nlc[2:].zfill(4).upper())
             # RAISE ERROR IF VALUE OF BYTE IS INVALID
             else:
                 raise InvalidByte.invalidByteValue \
@@ -59,15 +60,15 @@ def insert_LC(df):
             val = df.loc[i, 'value']
             sw = str(size_w(val))
             nlc = hex(add(int(lc[len(lc) - 1], 16), int(sw)))
-            lc.append(nlc[2:].zfill(4))
+            lc.append(nlc[2:].zfill(4).upper())
 
         elif instInput == 'RESB':
             val = df.loc[i, 'value']
             nlc = hex(add(int(lc[len(lc) - 1], 16), int(val)))
-            lc.append(nlc[2:].zfill(4))
+            lc.append(nlc[2:].zfill(4).upper())
         else:
             if instInput != 'END':
-                raise invalidInst.InvalidInst(instInput)
+                raise invalidInst.InvalidInst(instInput, str(i + 1))
         # if there is no end then it will be added
         if i == len(df['inst']) - 1 and instInput != 'END':
             df.loc[i + 1, 'inst'] = 'END'

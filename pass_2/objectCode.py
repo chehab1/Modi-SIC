@@ -45,7 +45,7 @@ def getObjectCode(df):
             elif not temp == 'RSUB' and not empty_dict.__contains__(value):
                 raise notFound.LabelNotFound(value, temp)
             elif temp == 'RSUB':
-                objectCodeList.append(inst.Mnemonic[temp][2:] + '0000')
+                objectCodeList.append(inst.Mnemonic[temp][2:].upper() + '0000')
             # for LDL, LDX, LDA, STA
             elif temp == 'LDL' or temp == 'LDX' or temp == 'LDA' or temp == 'STA':
                 if len(inst.Mnemonic[temp]) == 4:
@@ -85,6 +85,7 @@ def getObjectCode(df):
                 continue
             else:
                 objectCodeList[i] += empty_dict[temp]
+                objectCodeList[i] = objectCodeList[i].upper()
 
     df.insert(loc=4, column='objCode', value=objectCodeList)
     return df
