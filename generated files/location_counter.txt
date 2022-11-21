@@ -30,15 +30,16 @@
 2051          TIX   MAXLEN
 2054          JLT    RLOOP
 2057   EXIT   STX   LENGTH
-205a  INPUT  BYTE    X'F1'
-205b MAXLEN  WORD     4096
-205e  WRREC   LDX     ZERO
-2061  WLOOP    TD   OUTPUT
-2064          JEQ    WLOOP
-2067         LDCH BUFFER,X
-206a           WD   OUTPUT
-206d          TIX   LENGTH
-2070          JLT    WLOOP
-2073         RSUB         
-2076 OUTPUT  BYTE    X'05'
-2077          END    FIRST
+205a         RSUB         
+205d  INPUT  BYTE    X'F1'
+205e MAXLEN  WORD     4096
+2061  WRREC   LDX     ZERO
+2064  WLOOP    TD   OUTPUT
+2067          JEQ    WLOOP
+206a         LDCH BUFFER,X
+206d           WD   OUTPUT
+2070          TIX   LENGTH
+2073          JLT    WLOOP
+2076         RSUB         
+2079 OUTPUT  BYTE    X'05'
+207a          END    FIRST

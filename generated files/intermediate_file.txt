@@ -30,6 +30,7 @@ BUFFER  RESB     4096
          TIX   MAXLEN
          JLT    RLOOP
   EXIT   STX   LENGTH
+        RSUB         
  INPUT  BYTE    X'F1'
 MAXLEN  WORD     4096
  WRREC   LDX     ZERO

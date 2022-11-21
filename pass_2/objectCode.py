@@ -29,6 +29,7 @@ def getObjectCode(df):
             # check if it is format 1 & get opcode
             if isinstance(inst.Mnemonic[temp], list):
                 if len(value) > 0:
+                    print(len(value))
                     raise Exception('Format 1 should have no value in line ' + str(i+1))
                 objectCodeList.append(inst.Mnemonic[temp][1][2:])
             # check for values end with ,X

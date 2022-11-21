@@ -1,7 +1,7 @@
 import rsc.instructionSet as inst_set
 from operator import *
 import ErrorHandling.byteValues as InvalidByte
-
+from ErrorHandling import byteValues, invalidInst as InvalidByte, invalidInst
 
 def size_c(val):
     return len(val) - 3
@@ -65,6 +65,9 @@ def insert_LC(df):
             val = df.loc[i, 'value']
             nlc = hex(add(int(lc[len(lc) - 1], 16), int(val)))
             lc.append(nlc[2:].zfill(4))
+        else:
+            if instInput != 'END':
+                raise invalidInst.InvalidInst(instInput)
         # if there is no end then it will be added
         if i == len(df['inst']) - 1 and instInput != 'END':
             df.loc[i + 1, 'inst'] = 'END'
