@@ -12,7 +12,7 @@ data = {
     'inst': insts,
     'value': values
 }
-f = open('rsc/inputs/input_for_diss_2.txt', 'r')
+f = open('rsc/inputs/in.txt', 'r')
 
 # parsing input file
 for line in f.readlines():

@@ -17,7 +17,7 @@ def getTheHeader(df):
     str = int(df.loc[1, 'LCounter'], 16)
     end = int(df.loc[len(df) - 1, 'LCounter'], 16)
     length = hex(end - str)[2:].zfill(6)
-    header += length
+    header += length.upper()
     return header
 
 
@@ -44,14 +44,14 @@ def getHTE(df):
         if inst == 'END':
             temp = temp[:2] + string + temp[1:]
             length = hex(end - str)[2:].zfill(2)
-            temp = temp[:8] + '.' + length + '.' + temp[9:]
+            temp = temp[:8] + '.' + length.upper() + '.' + temp[9:]
             text.append(temp)
             break
 
         elif inst == 'RESW' or inst == 'RESB':
             temp = temp[:2] + string + temp[1:]
             length = hex(end - str)[2:].zfill(2)
-            temp = temp[:8] + '.' + length + '.' + temp[9:]
+            temp = temp[:8] + '.' + length.upper() + '.' + temp[9:]
             text.append(temp)
             f = l + 1
             l = f
@@ -66,7 +66,7 @@ def getHTE(df):
                 l -= 1
 
             length = length[2:].zfill(2)
-            temp = temp[:8] + '.' + length + '.' + temp[9:]
+            temp = temp[:8] + '.' + length.upper() + '.' + temp[9:]
             text.append(temp)
             f = l
             temp = 'T'

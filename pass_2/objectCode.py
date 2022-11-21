@@ -31,7 +31,7 @@ def getObjectCode(df):
                 if len(value) > 0:
                     print(len(value))
                     raise Exception('Format 1 should have no value in line ' + str(i+1))
-                objectCodeList.append(inst.Mnemonic[temp][1][2:])
+                objectCodeList.append(inst.Mnemonic[temp][1][2:].upper())
             # check for values end with ,X
             elif len(value) > 1 and value[len(value) - 2:].upper() == ',X':
                 # check if this value is already in labels or not

@@ -16,8 +16,9 @@ It generates five files, and set them in the folder "generated files".
     HTE.txt
 
 ## Project Criteria
-The only thing you need to do when writing your inputs is to use a tab separator between one column from another.
-
++   The only thing you need to do when writing your inputs is to use a tab separator between one column from another.
++   If you're going to add instructions without value, you need at least three columns with three tabs separators 
+![RSUB](https://github.com/chehab1/Modi-SIC/tree/main/rsc/inputs/img.png)
 ## How to run the project?
 1.  you need to install pyhton
 2.  Install pandas by running this command
